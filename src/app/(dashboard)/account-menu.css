@@ -1,0 +1,179 @@
+
+.account-menu-wrapper {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 4px 8px;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.header-profile:hover,
+.header-profile.is-selected {
+  background: var(--surface-raised);
+  border-color: var(--border);
+}
+
+.profile-chevron {
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.header-profile.is-selected .profile-chevron {
+  color: var(--accent);
+}
+
+.profile-chevron.is-rotated {
+  transform: rotate(180deg);
+}
+
+.account-menu {
+  position: absolute;
+  top: calc(100% + 13px);
+  right: 0;
+  z-index: 120;
+  width: 245px;
+  padding: 12px;
+  color: var(--text-primary);
+  background: #151d28;
+  border: 1px solid var(--border-strong);
+  border-radius: 15px;
+  box-shadow: var(--shadow-card);
+  animation: account-menu-enter 150ms ease-out;
+}
+
+.account-menu-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 5px 12px;
+}
+
+.account-menu-icon {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--accent);
+  background: rgba(184, 243, 107, 0.09);
+  border: 1px solid rgba(184, 243, 107, 0.12);
+  border-radius: 12px;
+}
+
+.account-menu-heading strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.account-menu-heading p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.account-menu-divider {
+  height: 1px;
+  margin: 2px 0 8px;
+  background: var(--border);
+}
+
+.account-signout-button {
+  display: flex;
+  width: 100%;
+  min-height: 42px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 11px;
+  color: #f0a4a4;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.account-signout-button:hover:not(:disabled) {
+  color: #ffb8b8;
+  background: rgba(239, 92, 92, 0.09);
+  border-color: rgba(239, 92, 92, 0.15);
+}
+
+.account-signout-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.account-signout-spinner {
+  animation: account-menu-spin 900ms linear infinite;
+}
+
+.account-menu-error {
+  margin: 8px 3px;
+  padding: 9px;
+  color: #ffb8bf;
+  background: rgba(239, 92, 92, 0.08);
+  border: 1px solid rgba(239, 92, 92, 0.18);
+  border-radius: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+@keyframes account-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes account-menu-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 620px) {
+  .account-menu {
+    top: calc(100% + 11px);
+    right: -2px;
+    width: min(245px, calc(100vw - 30px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-menu,
+  .account-signout-spinner {
+    animation: none;
+  }
+
+  .header-profile,
+  .profile-chevron,
+  .account-signout-button {
+    transition: none;
+  }
+}
